@@ -14,6 +14,7 @@ function createDeployment (
   s3Bucket,
   s3BundleType,
   s3Key,
+  ignoreApplicationStopFailures,
   deploymentConfigName = "CodeDeployDefault.OneAtATime",
   description = "Deployment via codedeploy-poller"
 ) {
@@ -25,7 +26,8 @@ function createDeployment (
     `--deployment-group-name ${deploymentGroupName}`,
     `--description "${description}"`,
     `--s3-location bucket=${s3Bucket},bundleType=${s3BundleType},key=${s3Key}`,
-    `${profile ? "--profile " : ""}${profile ? profile : ""}`
+    ignoreApplicationStopFailures ? "--ignore-application-stop-failures" : "",
+    profile ? `--profile ${profile}` : ""
   ].join(" ");
 
   try {
@@ -42,7 +44,7 @@ function pollForStatus (profile, pollInterval, deploymentId, resolve, reject) {
   const getDeploymentStateCommand = [
     `aws deploy get-deployment`,
     `--deployment-id ${deploymentId}`,
-    `${profile ? "--profile " : ""}${profile ? profile : ""}`
+    profile ? `--profile ${profile}` : ""
   ].join(" ");
   try {
     const output = execSync(getDeploymentStateCommand);

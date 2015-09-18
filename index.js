@@ -18,8 +18,10 @@ function getCommandLineOptions () {
     .describe("deployment-config-name", "A documented predefined values")
     .describe("description", "A textual description to give the deployment")
     .describe("poll-interval", "how often to poll (secs)")
+    .describe("ignore-application-stop-failures", "ignores stop failures")
 
     .default("poll-interval", 10)
+    .default("ignore-application-stop-failures", false)
     .default("deployment-config-name", "CodeDeployDefault.OneAtATime")
     .default("description", "Deployment via codedeploy-poller")
 
@@ -39,6 +41,7 @@ function run () {
     argv.s3Bucket,
     argv.s3BundleType,
     argv.s3Key,
+    argv.ignoreApplicationStopFailures,
     argv.deploymentConfigName,
     argv.description
   ).then(
