@@ -1,0 +1,29 @@
+{
+  "name": "codedeploy-poller",
+  "version": "1.0.0",
+  "description": "Polls for a deployment id until it succeeds or fails",
+  "author": "Will Becker <will@lexicallabs.com>",
+  "scripts": {
+    "start": "node_modules/.bin/babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexical-labs/codedeploy-poller"
+  },
+  "bugs": {
+    "url": "https://github.com/lexical-labs/codedeploy-poller/issues"
+  },
+  "keywords": [
+    "codedeploy",
+    "aws"
+  ],
+  "dependencies": {
+    "babel": "5.x",
+    "optimist": "0.6.x"
+  },
+  "devDependencies": {
+    "babel-eslint": "4.x",
+    "eslint": "1.x"
+  },
+  "license": "MIT"
+}
