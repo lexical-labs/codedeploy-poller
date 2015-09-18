@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "babel": "5.x",
-    "optimist": "0.6.x"
+    "yargs": "3.x"
   },
   "devDependencies": {
     "babel-eslint": "4.x",

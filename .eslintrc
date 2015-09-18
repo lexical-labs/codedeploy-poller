@@ -16,7 +16,7 @@
     "curly": 2,
     /*"default-case": 2,*/
     "dot-location": [2, "property"],
-    "dot-notation": [2, {"allowKeywords": false}],
+    "dot-notation": [2, {"allowKeywords": true}],
     "eqeqeq": 2,
     "guard-for-in": 2,
     "no-alert": 2,
