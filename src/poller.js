@@ -42,7 +42,7 @@ function testStatus (profile, pollInterval, deploymentId) {
   const getDeploymentStateCommand = [
     `aws deploy get-deployment`,
     `--deployment-id ${deploymentId}`,
-    `${profile ? "--profile " : ""}${profile}`
+    `${profile ? "--profile " : ""}${profile ? profile : ""}`
   ].join(" ");
   return new Promise((resolve, reject) => {
     try {
