@@ -38,30 +38,35 @@ function createDeployment (
   }
 }
 
-function testStatus (profile, pollInterval, deploymentId) {
+function pollForStatus (profile, pollInterval, deploymentId, resolve, reject) {
   const getDeploymentStateCommand = [
     `aws deploy get-deployment`,
     `--deployment-id ${deploymentId}`,
     `${profile ? "--profile " : ""}${profile ? profile : ""}`
   ].join(" ");
-  return new Promise((resolve, reject) => {
-    try {
-      const output = execSync(getDeploymentStateCommand);
-      const response = JSON.parse(output.toString()).deploymentInfo;
-      const status = response.status;
-      if (!endStates[status]) {
-        setTimeout(
-          () => testStatus(profile, pollInterval, deploymentId),
-          pollInterval
-        );
-      } else if (endStates[status] > 0) {
-        resolve();
-      } else {
-        reject(response.errorInformation);
-      }
-    } catch (error) {
-      reject(`Error while running command: ${getDeploymentStateCommand}`);
+  try {
+    const output = execSync(getDeploymentStateCommand);
+    const response = JSON.parse(output.toString()).deploymentInfo;
+    const status = response.status;
+    if (!endStates[status]) {
+      setTimeout(
+        () => pollForStatus(profile, pollInterval,
+          deploymentId, resolve, reject),
+        pollInterval
+      );
+    } else if (endStates[status] > 0) {
+      resolve();
+    } else {
+      reject(response.errorInformation);
     }
+  } catch (error) {
+    reject(`Error while running command: ${getDeploymentStateCommand}`);
+  }
+}
+
+function testStatus (profile, pollInterval, deploymentId) {
+  return new Promise((resolve, reject) => {
+    pollForStatus(profile, pollInterval, deploymentId, resolve, reject);
   });
 }
 
