@@ -2,16 +2,16 @@
 
 Polls for a AWS CodeDeploy deployment id until it succeeds or fails
 
-#Installation
+##Installation
 
 ```
 npm install codedeploy-poller --save-dev
 ```
 
-#Dependencies
+##Dependencies
 You must have [awscli](https://aws.amazon.com/cli/) installed.
 
-#Usage
+##Usage
 
 ```
 Options:
