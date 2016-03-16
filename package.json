@@ -1,6 +1,6 @@
 {
   "name": "codedeploy-poller",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Polls for a deployment id until it succeeds or fails",
   "author": "Will Becker <will@lexicallabs.com>",
   "scripts": {
@@ -18,7 +18,7 @@
     "aws"
   ],
   "dependencies": {
-    "babel": "5.x",
+    "babel": ">=5.x",
     "yargs": "3.x"
   },
   "devDependencies": {
