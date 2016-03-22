@@ -1,6 +1,6 @@
 {
   "name": "codedeploy-poller",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Polls for a deployment id until it succeeds or fails",
   "author": "Will Becker <will@lexicallabs.com>",
   "scripts": {
