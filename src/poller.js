@@ -1,4 +1,4 @@
-import "babel/polyfill";
+import "babel-polyfill";
 import {execSync} from "child_process";
 
 const endStates = {
